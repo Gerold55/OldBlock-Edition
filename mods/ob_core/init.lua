@@ -1,0 +1,12 @@
+ob_core = {}
+ob_core.modname = minetest.get_current_modname()
+ob_core.modpath = minetest.get_modpath(ob_core.modname)
+dofile(ob_core.modpath .. "/nodes.lua")
+minetest.register_alias("stone",  "ob_core:stone")
+minetest.register_alias("dirt",   "ob_core:dirt")
+minetest.register_alias("grass",  "ob_core:dirt_with_grass")
+minetest.register_alias("sand",   "ob_core:sand")
+minetest.register_alias("gravel", "ob_core:gravel")
+minetest.register_alias("log",    "ob_core:log_oak")
+minetest.register_alias("leaves", "ob_core:leaves_oak")
+minetest.register_alias("planks", "ob_core:planks_oak")
