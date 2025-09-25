@@ -56,10 +56,11 @@ local function make_formspec()
     fs[#fs+1] = "bgcolor[#00000000]"
 
     -- Black outer border
-    fs[#fs+1] = string.format("box[0,0;%.2f,%.2f;#000000FF]", WIN_W, WIN_H)
+    --fs[#fs+1] = string.format("box[0,0;%.2f,%.2f;#000000FF]", WIN_W, WIN_H)
     -- Dark gray inner panel
-    fs[#fs+1] = string.format("box[%.2f,%.2f;%.2f,%.2f;#2E2E2EFF]",
-        FRAME_PAD, FRAME_PAD, WIN_W - 2*FRAME_PAD, WIN_H - 2*FRAME_PAD)
+    --fs[#fs+1] = string.format("box[%.2f,%.2f;%.2f,%.2f;#2E2E2EFF]",
+      --  FRAME_PAD, FRAME_PAD, WIN_W - 2*FRAME_PAD, WIN_H - 2*FRAME_PAD)
+      fs[#fs+1] = string.format("image[0,0;%.2f,%.2f;ob_inventory_inv_bg.png]", WIN_W, WIN_H)
 
     -- Item image buttons only (no borders)
     fs[#fs+1] = "style_type[item_image_button;border=false;bgimg=;bgimg_hovered=;bgimg_pressed=;alpha=true;noclip=true]"
@@ -72,6 +73,8 @@ local function make_formspec()
         local x = LEFT + col * (CELL_SIZE + CELL_SPACE)
         local y = TOP + row * (CELL_SIZE + CELL_SPACE)
         local field = string.format("pick_%d", idx)
+        fs[#fs+1] = string.format("image[%.2f,%.2f;%.2f,%.2f;ob_inventory_slot_bg.png]",
+            x-.025, y-.025, CELL_SIZE+.05, CELL_SIZE+.05)
         fs[#fs+1] = string.format("item_image_button[%.2f,%.2f;%.2f,%.2f;%s;%s;]",
             x, y, CELL_SIZE, CELL_SIZE, itemname, field)
     end
@@ -82,6 +85,8 @@ end
 local function ensure_hotbar(player)
     if player.hud_set_hotbar_itemcount then
         player:hud_set_hotbar_itemcount(HOTBAR_COUNT)
+        player:hud_set_hotbar_image("gui_hotbar.png")
+	    player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
     end
     local inv = player:get_inventory()
     if inv:get_size("main") < HOTBAR_COUNT then
