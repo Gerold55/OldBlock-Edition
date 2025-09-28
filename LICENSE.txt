@@ -1,0 +1,77 @@
+# LICENSE.txt – OldBlock Edition
+
+## OldBlock Edition Source Code
+**License: MIT License**  
+Copyright (C) 2025 Gerold55  
+
+Permission is hereby granted, free of charge, to any person obtaining a copy  
+of this software and associated documentation files (the "Software"), to deal  
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+copies of the Software, and to permit persons to whom the Software is  
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in  
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING  
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS  
+IN THE SOFTWARE.
+
+---
+
+## Bundled Component: player_api (code)
+**License: GNU Lesser General Public License (LGPL) v2.1**  
+Copyright (C) 2011-2018 celeron55, Perttu Ahola <celeron55@gmail.com>  
+Copyright (C) 2011-2018 Various Minetest developers and contributors  
+
+This program is free software; you can redistribute it and/or modify it under  
+the terms of the GNU Lesser General Public License as published by the Free  
+Software Foundation; either version 2.1 of the License, or (at your option)  
+any later version.
+
+The full license text is available at:  
+https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+---
+
+## Bundled Component: player_api (media – textures, models, sounds)
+**License: Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)**  
+Copyright (C) 2011-2018 celeron55, Perttu Ahola  
+Copyright (C) 2012-2018 Jordach  
+Copyright (C) 2018 stujones11  
+Copyright (C) 2018 paramat  
+
+For more details:  
+https://creativecommons.org/licenses/by-sa/3.0/
+
+**Additional media by sonictechtonic**  
+License: Creative Commons Attribution 3.0 Unported (CC BY 3.0)  
+Copyright (C) 2014-2018 sonictechtonic  
+https://creativecommons.org/licenses/by/3.0/
+
+---
+
+## Bundled Component: Pixel Perfection Textures
+**License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**  
+Original textures by *Pixel Perfection author(s)*.  
+You are free to share and adapt the textures, provided you give appropriate  
+credit and distribute derivatives under the same license.  
+
+Full license text:  
+https://creativecommons.org/licenses/by-sa/4.0/
+
+---
+
+## Summary of Licensing
+- **OldBlock Edition source code** → MIT  
+- **player_api code** → LGPL-2.1  
+- **player_api media** → CC BY-SA 3.0 / CC BY 3.0  
+- **Pixel Perfection textures** → CC BY-SA 4.0  
+
+When distributing OldBlock Edition, please ensure that all included licenses  
+remain intact and that attribution is preserved for all third-party components.  
