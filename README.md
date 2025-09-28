@@ -27,7 +27,7 @@ The project’s goal is to replicate the look, feel, and gameplay of the very fi
 - Glass, bookshelf  
 - Bedrock, TNT (placeholder, non-functional)  
 - Water, lava (creative placement only)  
-- Torch (3D model recreation)  
+- Torch 
 - Cyan flower (mapgen decoration)
 
 ---
@@ -37,7 +37,7 @@ The project’s goal is to replicate the look, feel, and gameplay of the very fi
 1. Install [Luanti/Minetest 5.13+](https://www.luanti.org/downloads/).  
 2. Clone or download this repository into your `games/` directory:  
    ```bash
-   git clone https://github.com/<yourusername>/oldblock_edition.git
+   git clone https://github.com/Gerold55/oldblock_edition.git
    ```  
    You should now have:  
    ```
@@ -78,11 +78,8 @@ This project combines several licenses. Please read [`LICENSE.txt`](LICENSE.txt)
 
 ## 🚀 Roadmap
 
-- [ ] Finalize mapgen to better match MCPE 0.1.x  
-- [ ] Add proper fog settings  
-- [ ] Improve inventory GUI to pixel-perfect accuracy  
-- [ ] Future-proof grass/leaf coloring for later biome updates  
-- [ ] Optional creative menu toggle (like classic NEI)  
+- [ ] Update to 0.2.X  
+- [ ] Future-proof grass/leaf coloring for later biome updates
 
 ---
 
