@@ -27,26 +27,39 @@ local FORMNAME = "ob_inventory:picker"
 -- dedupe store
 local last_click = {}
 
-local blocks_011 = {
-    "ob_core:stone",
-    "ob_core:dirt",
-    "ob_core:dirt_with_grass",
-    "ob_core:sand",
-    "ob_core:gravel",
-    "ob_core:log_oak",
-    "ob_core:leaves_oak",
-    "ob_core:planks_oak",
-    "ob_core:sapling_oak",
+-- MCPE 0.1 creative set (~32 blocks, TNT comes from ob_tnt)
+local blocks_010 = {
+  -- terrain / building
+  "ob_core:stone", "ob_core:cobble", "ob_core:dirt", "ob_core:dirt_with_grass",
+  "ob_core:sand", "ob_core:gravel",
+  "ob_core:log_oak", "ob_core:planks_oak", "ob_core:leaves_oak",
+  "ob_core:glass", "ob_core:bookshelf", "ob_core:flower_cyan",
+
+  -- wool (16)
+  "ob_core:wool_white","ob_core:wool_orange","ob_core:wool_magenta","ob_core:wool_light_blue",
+  "ob_core:wool_yellow","ob_core:wool_lime","ob_core:wool_pink","ob_core:wool_gray",
+  "ob_core:wool_light_gray","ob_core:wool_cyan","ob_core:wool_purple","ob_core:wool_blue",
+  "ob_core:wool_brown","ob_core:wool_green","ob_core:wool_red","ob_core:wool_black",
+
+  -- lights / special
+  "ob_core:torch", "ob_core:glowstone",
+
+  -- TNT (from ob_tnt mod)
+  "ob_tnt:tnt",
+
+  -- bottom & liquids
+  "ob_core:bedrock","ob_core:water_source","ob_core:lava_source",
 }
 
 local function get_blocks()
-    local t = {}
-    for _,name in ipairs(blocks_011) do
-        if minetest.registered_items[name] then
-            table.insert(t, name)
-        end
+  local t, seen = {}, {}
+  for _,name in ipairs(blocks_010) do
+    if minetest.registered_items[name] and not seen[name] then
+      table.insert(t, name)
+      seen[name] = true
     end
-    return t
+  end
+  return t
 end
 
 local function make_formspec()
@@ -56,10 +69,11 @@ local function make_formspec()
     fs[#fs+1] = "bgcolor[#00000000]"
 
     -- Black outer border
-    fs[#fs+1] = string.format("box[0,0;%.2f,%.2f;#000000FF]", WIN_W, WIN_H)
+    --fs[#fs+1] = string.format("box[0,0;%.2f,%.2f;#000000FF]", WIN_W, WIN_H)
     -- Dark gray inner panel
-    fs[#fs+1] = string.format("box[%.2f,%.2f;%.2f,%.2f;#2E2E2EFF]",
-        FRAME_PAD, FRAME_PAD, WIN_W - 2*FRAME_PAD, WIN_H - 2*FRAME_PAD)
+    --fs[#fs+1] = string.format("box[%.2f,%.2f;%.2f,%.2f;#2E2E2EFF]",
+      --  FRAME_PAD, FRAME_PAD, WIN_W - 2*FRAME_PAD, WIN_H - 2*FRAME_PAD)
+      fs[#fs+1] = string.format("image[0,0;%.2f,%.2f;ob_inventory_inv_bg.png]", WIN_W, WIN_H)
 
     -- Item image buttons only (no borders)
     fs[#fs+1] = "style_type[item_image_button;border=false;bgimg=;bgimg_hovered=;bgimg_pressed=;alpha=true;noclip=true]"
@@ -72,6 +86,8 @@ local function make_formspec()
         local x = LEFT + col * (CELL_SIZE + CELL_SPACE)
         local y = TOP + row * (CELL_SIZE + CELL_SPACE)
         local field = string.format("pick_%d", idx)
+        fs[#fs+1] = string.format("image[%.2f,%.2f;%.2f,%.2f;ob_inventory_slot_bg.png]",
+            x-.025, y-.025, CELL_SIZE+.05, CELL_SIZE+.05)
         fs[#fs+1] = string.format("item_image_button[%.2f,%.2f;%.2f,%.2f;%s;%s;]",
             x, y, CELL_SIZE, CELL_SIZE, itemname, field)
     end
@@ -82,6 +98,8 @@ end
 local function ensure_hotbar(player)
     if player.hud_set_hotbar_itemcount then
         player:hud_set_hotbar_itemcount(HOTBAR_COUNT)
+        player:hud_set_hotbar_image("gui_hotbar.png")
+	    player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
     end
     local inv = player:get_inventory()
     if inv:get_size("main") < HOTBAR_COUNT then

@@ -1,22 +1,33 @@
-local BORDER = 128
-local function clamp(v, lo, hi) if v < lo then return lo elseif v > hi then return hi else return v end end
-local function out_of_bounds(p) return p.x < -BORDER or p.x >= BORDER or p.z < -BORDER or p.z >= BORDER end
 
-minetest.register_globalstep(function(dtime)
-  for _, player in ipairs(minetest.get_connected_players()) do
-    local p = player:get_pos()
-    if out_of_bounds(p) then
-      p.x = clamp(p.x, -BORDER + 0.5, BORDER - 0.5)
-      p.z = clamp(p.z, -BORDER + 0.5, BORDER - 0.5)
-      player:set_pos(p)
-      local vel = player:get_velocity() or {x=0,y=0,z=0}
-      if player.add_player_velocity then
-        player:add_player_velocity({x=-vel.x, y=0, z=-vel.z})
-      end
-      minetest.chat_send_player(player:get_player_name(), "World border: classic size.")
-    end
-  end
+-- ob_rules_010: MCPE 0.1 rules
+-- - No flying / noclip
+-- - Instant break blocks
+-- - Leave creative inventory UI available (handled by ob_inventory)
+
+local function apply_player_rules(player)
+  -- remove flight-like abilities
+  local name = player:get_player_name()
+  local privs = minetest.get_player_privs(name)
+  privs.fly = nil; privs.noclip = nil
+  minetest.set_player_privs(name, privs)
+  -- physics overrides
+  player:set_physics_override({sneak=true, jump=1.0, speed=1.0, gravity=1.0})
+end
+
+minetest.register_on_joinplayer(function(player)
+  -- apply a tick later to override other mods
+  minetest.after(0.1, function(p) if p and p:is_player() then apply_player_rules(p) end end, player)
 end)
 
-minetest.register_on_placenode(function(pos) if out_of_bounds(pos) then return true end end)
-minetest.register_on_dignode(function(pos) if out_of_bounds(pos) then return true end end)
+-- Instant break: remove node on punch (skip bedrock/border)
+local hard = {
+  ["ob_core:bedrock"]=true,
+  ["ob_core:border"]=true,
+}
+minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
+  if not puncher or not puncher:is_player() then return end
+  if hard[node.name] then return end
+  if minetest.is_protected(pos, puncher:get_player_name()) then return end
+  -- emulate creative instant dig
+  minetest.remove_node(pos)
+end)
