@@ -37,7 +37,7 @@ The project’s goal is to replicate the look, feel, and gameplay of the very fi
 1. Install [Luanti/Minetest 5.13+](https://www.luanti.org/downloads/).  
 2. Clone or download this repository into your `games/` directory:  
    ```bash
-   git clone https://github.com/<yourusername>/oldblock_edition.git
+   git clone https://github.com/Gerold55/oldblock_edition.git
    ```  
    You should now have:  
    ```
