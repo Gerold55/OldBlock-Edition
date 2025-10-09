@@ -1,0 +1,21 @@
+OldBlock Edition — Media License Details
+========================================
+
+All non-code media (textures, models, sounds) are licensed under:
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Includes:
+- Pixel Perfection–based textures
+- Custom OldBlock Edition textures and icons
+
+Attribution:
+Pixel Perfection by XSSheep and contributors  
+Modified and adapted for OldBlock Edition by Gerold55
+
+-----------------------------------------------
+Third-party media bundled within player_api or Minetest base assets
+remain under their respective licenses:
+- CC BY-SA 3.0 — Minetest Team
+- CC BY 3.0 — sonictechtonic (where applicable)
+-----------------------------------------------

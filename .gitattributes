@@ -1,2 +1,46 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# .gitattributes for OldBlock Edition
+# Mark large/unnecessary files as export-ignore so 'git archive' and other export tools
+# used by packaging/ContentDB will NOT include them in release archives.
+
+# Common big binary/art files that you probably don't want in the contentdb zip
+*.psd             export-ignore
+*.ai              export-ignore
+*.xcf             export-ignore
+*.blend           export-ignore
+*.kra             export-ignore
+
+# Large document sources, drafts, or design files
+docs/raw/**       export-ignore
+*.pdf             export-ignore
+
+# Raw/hi-res assets not needed for the default release
+assets/raw/**     export-ignore
+images/hires/**   export-ignore
+artwork/raw/**    export-ignore
+
+# Source archives / build artifacts
+*.zip             export-ignore
+*.7z              export-ignore
+*.tar.gz          export-ignore
+*.tgz             export-ignore
+
+# Audio/unused formats
+*.wav             export-ignore
+*.flac            export-ignore
+*.aiff            export-ignore
+
+# IDE/editor/runtime config (not necessary in release)
+.vscode/**        export-ignore
+.idea/**          export-ignore
+
+# Tests / playground that are not required by players
+tests/**          export-ignore
+playground/**     export-ignore
+
+# Keep README, LICENSE, and code files in archives
+!README.md
+!LICENSE.txt
+!MEDIA_LICENSES.txt
+!mods/**
+
+# End of .gitattributes
